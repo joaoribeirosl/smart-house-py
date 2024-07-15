@@ -54,7 +54,7 @@ class SmartHouse:
     def get_all_devices(self):     
         return [(i, device.type) for i, device in enumerate(self.devices)]
     
-    def turn_off_all_light(self):
+    def turn_off_all_lights(self):
         return list(map(self.turn_off_light, self.devices))
 
     def turn_off_light(self, device):

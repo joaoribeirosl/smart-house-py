@@ -8,7 +8,7 @@ class DeviceFactory:
     
     @abstractmethod
     def create_device(device_type):
-        device_type = device_type.lower()
+        device_type = device_type.strip().lower()
         if device_type == 'light':
             return Light()
         elif device_type == 'thermostat':

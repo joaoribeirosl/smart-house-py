@@ -103,12 +103,14 @@ def main():
             if len(sh.devices):
                 print(sh.get_all_devices())
                 print()
-                id = int(input('which device you want to handle? '))    
-                
-                if isinstance(sh.devices[id], Light):
-                    actual_light = sh.devices[id]
+                id = int(input('which device you want to handle? ')) 
+
+                actual_device = sh.devices[id]   
+        
+                if isinstance(actual_device, Light):
+                    
                     # if actual_light.status == 'off':
-                    all_lights_input = input('do you want turn on all lights? (y/n) ').lower()
+                    all_lights_input = input(f"do you want turn 'on' if'  all lights? (y/n) '").strip().lower()
                     if all_lights_input == 'y':
                         sh.turn_on_all_lights()
                     else:    
@@ -116,41 +118,39 @@ def main():
                         light_input = input('select an option: ')
 
                         if light_input == '1':
-                            if actual_light.status == 'off':
-                                actual_light.turn_on()
+                            if actual_device.status == 'off':
+                                actual_device.turn_on()
                         else:
-                            if actual_light.status == 'on':
-                                actual_light.turn_off()
+                            if actual_device.status == 'on':
+                                actual_device.turn_off()
 
-                elif isinstance(sh.devices[id], Thermostat):
-                    actual_thermostat = sh.devices[id]
+                elif isinstance(actual_device, Thermostat):
                     thermostat_menu()
                     thermostat_input = input('select an option: ')
 
                     if thermostat_input == '1':
-                        if actual_thermostat.status != 'heat':
-                            actual_thermostat.turn_on()
+                        if actual_device.status != 'heat':
+                            actual_device.turn_on()
                     elif thermostat_input == '2':
-                        if actual_thermostat.status != 'cool':
-                            actual_thermostat.cool()
+                        if actual_device.status != 'cool':
+                            actual_device.cool()
                     else: 
-                        if actual_thermostat.status != 'off':
-                            actual_thermostat.turn_off()
+                        if actual_device.status != 'off':
+                            actual_device.turn_off()
    
-                elif isinstance(sh.devices[id], SecuritySystem):
-                    actual_security_system = sh.devices[id]
+                elif isinstance(actual_device, SecuritySystem):
                     security_system_menu()
                     security_system_input = input('select an option: ')
                   
                     if security_system_input == '1':
-                        if actual_security_system.status != 'arm_with_people_in_home':
-                            actual_security_system.turn_on()
+                        if actual_device.status != 'arm_with_people_in_home':
+                            actual_device.turn_on()
                     elif security_system_input == '2':
-                        if actual_security_system.status != 'arm_without_people_in_home':
-                            actual_security_system.arm_without_people_in_home()
+                        if actual_device.status != 'arm_without_people_in_home':
+                            actual_device.arm_without_people_in_home()
                     else: 
-                        if actual_security_system.status != 'off':
-                            actual_security_system.turn_off()
+                        if actual_device.status != 'off':
+                            actual_device.turn_off()
             
         elif op == '3':
             in_menu_device = True
