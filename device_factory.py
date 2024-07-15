@@ -16,4 +16,4 @@ class DeviceFactory:
         elif device_type == 'security_system':
             return SecuritySystem()
         else:
-            raise ValueError('not found')
+            raise ValueError('device not found')
