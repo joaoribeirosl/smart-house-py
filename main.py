@@ -107,6 +107,7 @@ def main():
                 
                 if isinstance(sh.devices[id], Light):
                     actual_light = sh.devices[id]
+                    # if actual_light.status == 'off':
                     all_lights_input = input('do you want turn on all lights? (y/n) ').lower()
                     if all_lights_input == 'y':
                         sh.turn_on_all_lights()

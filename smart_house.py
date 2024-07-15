@@ -42,17 +42,27 @@ class SmartHouse:
             print(f'you cannot add this {type}, you reached the device limit {self.limit}')
 
     def remove_device(self, id):
-        if id in self.devices:
-            self.devices.pop(id)
-            self.notify_remove()
-        else: 
-            print('device not found')
+        if id < len(self.devices):
+            removed_device = self.devices.pop(id)
+            self.notify_remove(removed_device)
+        else:
+            print('Device not found')
         
     def get_all_device_status(self):     
         return [[device.type, device.status] for device in self.devices]
     
     def get_all_devices(self):     
         return [(i, device.type) for i, device in enumerate(self.devices)]
+    
+    def turn_off_all_light(self):
+        return list(map(self.turn_off_light, self.devices))
+
+    def turn_off_light(self, device):
+        if device.type == 'light':
+            if device.status == 'on':
+                device.status = 'off'
+                device.trigger('turn_off')
+
     
     def turn_on_all_lights(self):
         return list(map(self.turn_on_light, self.devices))
@@ -77,6 +87,6 @@ class SmartHouse:
         for observer in self.__observers:
             observer.update(device)
 
-    def notify_remove(self):
+    def notify_remove(self, device):
         for observer in self.__observers:
-            observer.update_remove()
+            observer.update_remove(device)

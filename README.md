@@ -65,8 +65,7 @@ python main.py set_limit 5
 A partir daí vai ser possível:
 
 ```
-# considerando para os próximos exemplos que na casa tenha 
-  uma luz, um termostato e um sistema de segurança
+# considerando para os próximos exemplos que na casa tenha uma luz, um termostato e um sistema de segurança
 ```
 
 
@@ -80,6 +79,9 @@ print(sh.get_all_device_status())
 print(sh.get_all_devices())
 >>> [(0, 'light'), (1, 'thermostat'), (2, 'security_system')] 
 # qual dispositivo você deseja controlar?
+
+#caso queira controlar uma luz única luz
+>>> voce deseja ligar todas as luzes? (s/n) 
 
 # caso queira controlar o termostato, digite 1
 >>>               <<< Thermostat Menu >>>
