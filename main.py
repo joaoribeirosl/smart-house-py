@@ -109,10 +109,11 @@ def main():
         
                 if isinstance(actual_device, Light):
                     
-                    # if actual_light.status == 'off':
-                    all_lights_input = input(f"do you want turn 'on' if'  all lights? (y/n) '").strip().lower()
-                    if all_lights_input == 'y':
+                    all_lights_input = input(f"do you want turn {'on' if actual_device.status == 'off' else 'off'} all lights? (y/n)").strip().lower()
+                    if all_lights_input == 'y' and actual_device.status == 'off':
                         sh.turn_on_all_lights()
+                    elif all_lights_input == 'y' and actual_device.status == 'on':
+                        sh.turn_off_all_lights()
                     else:    
                         light_menu()
                         light_input = input('select an option: ')
