@@ -48,8 +48,6 @@ print(sh.count_all_on_devices())
 print(sh.get_all_on_devices())
 >>> ['light']
 
-print(sh.get_all_devices())
->>> ['light', 'thermostat', 'security_system']
 ```
 
 
@@ -65,11 +63,7 @@ usage: python main.py [<set_limit> limit]
 python main.py set_limit 5
 ```
 
-A partir daí vai ser possível:
-
-```
-# considerando para os próximos exemplos que na casa tenha uma luz, um termostato e um sistema de segurança
-```
+##### considerando que na casa tenha uma luz, um termostato e um sistema de segurança, vai ser possível:
 
 
 * verificar o status dos dispositivos
