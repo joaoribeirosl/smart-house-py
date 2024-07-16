@@ -5,8 +5,11 @@ Nesta implementação do sistema de uma casa inteligente temos:
 implementação convencional:
 
 ```
-sh = SmartHouse.get_instance() # unica instancia de SmartHouse
-sh2 = SmartHouse() # erro ao criar uma segunda instancia
+sh = SmartHouse() # unica instancia de SmartHouse
+sh2 = SmartHouse() # não vai criar uma outra instancia!
+
+print(sh is sh2)
+>>> True
 
 observer = Observer()
 sh.add(observer) # adiciona um observer à SmartHouse

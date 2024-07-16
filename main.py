@@ -77,7 +77,8 @@ def main():
         help()
         return
     
-    sh = SmartHouse.get_instance()
+    sh = SmartHouse()
+    
     observer = Observer()
     sh.add(observer)
 

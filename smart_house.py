@@ -3,18 +3,13 @@ from device_factory import DeviceFactory
 
 class SmartHouse:
     __instance = None
-    __is_initialized = None
-
-    @staticmethod
-    def get_instance():
-        if not SmartHouse.__instance:
-            SmartHouse.__instance = SmartHouse()
-        return SmartHouse.__instance
     
+    def __new__(cls):
+        if not SmartHouse.__instance:
+            SmartHouse.__instance = super(SmartHouse, cls).__new__(cls)   
+        return SmartHouse.__instance 
+        
     def __init__(self) -> None:
-        if SmartHouse.__is_initialized:     
-            raise Exception('this class must have only one instance, if you dont like it please, remove C:\Windows\System32')
-        SmartHouse.__is_initialized = True
         self.devices = []
         self.__observers = []
         self.__limit = 0
