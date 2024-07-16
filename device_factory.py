@@ -1,12 +1,10 @@
 from light import Light
 from security_system import SecuritySystem
 from thermostat import Thermostat
-from abc import abstractmethod
-
 
 class DeviceFactory:
     
-    @abstractmethod
+    @staticmethod
     def create_device(device_type):
         device_type = device_type.strip().lower()
         if device_type == 'light':
