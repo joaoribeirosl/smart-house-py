@@ -59,7 +59,6 @@ class SmartHouse:
                 device.trigger('turn_off')
                 self.notify(device = 'light', operation = 'state', state = 'off')
 
-    
     def turn_on_all_lights(self):
         return list(map(self.turn_on_light, self.devices))
 
