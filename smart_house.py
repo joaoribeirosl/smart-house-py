@@ -57,6 +57,7 @@ class SmartHouse:
             if device.status == 'on':
                 device.status = 'off'
                 device.trigger('turn_off')
+                self.notify(device = 'light', operation = 'state', state = 'off')
 
     
     def turn_on_all_lights(self):
