@@ -32,14 +32,14 @@ class SmartHouse:
         if len(self.devices) < self.__limit:
             device = DeviceFactory.create_device(type)
             self.devices.append(device)
-            self.notify(device)
+            self.notify(device = device.type, operation = 'add')
         else:
             print(f'you cannot add this {type}, you reached the device limit {self.limit}')
 
     def remove_device(self, id):
         if id < len(self.devices):
             removed_device = self.devices.pop(id)
-            self.notify_remove(removed_device)
+            self.notify(device = removed_device.type, operation = 'remove')
         else:
             print('Device not found')
         
@@ -67,6 +67,7 @@ class SmartHouse:
             if device.status == 'off':
                 device.status = 'on'
                 device.trigger('turn_on')
+                self.notify(device = 'light', operation = 'state', state = 'on')
  
     def get_all_on_devices(self):
         on_devices = list(filter(self.get_on_devices, self.devices))
@@ -78,10 +79,6 @@ class SmartHouse:
     def count_all_on_devices(self):
         return reduce(lambda count, device: count + 1 if device.status == 'on' else count, self.devices, 0)
 
-    def notify(self, device):
+    def notify(self, **kwargs):
         for observer in self.__observers:
-            observer.update(device)
-
-    def notify_remove(self, device):
-        for observer in self.__observers:
-            observer.update_remove(device)
+            observer.update(**kwargs)

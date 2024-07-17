@@ -122,9 +122,11 @@ def main():
                         if light_input == '1':
                             if actual_device.status == 'off':
                                 actual_device.turn_on()
+                                sh.notify(device = 'light', operation = 'state', state = 'on')
                         else:
                             if actual_device.status == 'on':
                                 actual_device.turn_off()
+                                sh.notify(device = 'light', operation = 'state', state = 'off')
 
                 elif isinstance(actual_device, Thermostat):
                     thermostat_menu()
@@ -133,12 +135,15 @@ def main():
                     if thermostat_input == '1':
                         if actual_device.status != 'heat':
                             actual_device.turn_on()
+                            sh.notify(device = 'thermostat', operation = 'state', state = 'heating')
                     elif thermostat_input == '2':
                         if actual_device.status != 'cool':
                             actual_device.cool()
+                            sh.notify(device = 'thermostat', operation = 'state', state = 'cooling')
                     else: 
                         if actual_device.status != 'off':
                             actual_device.turn_off()
+                            sh.notify(device = 'thermostat', operation = 'state', state = 'off')
    
                 elif isinstance(actual_device, SecuritySystem):
                     security_system_menu()
@@ -147,12 +152,15 @@ def main():
                     if security_system_input == '1':
                         if actual_device.status != 'arm_with_people_in_home':
                             actual_device.turn_on()
+                            sh.notify(device = 'security system', operation = 'state', state = 'armed_with_people_in_home')
                     elif security_system_input == '2':
                         if actual_device.status != 'arm_without_people_in_home':
                             actual_device.arm_without_people_in_home()
+                            sh.notify(device = 'security system', operation = 'state', state = 'armed_without_people_in_home')
                     else: 
                         if actual_device.status != 'off':
                             actual_device.turn_off()
+                            sh.notify(device = 'security system', operation = 'state', state = 'unarmed')
             
         elif op == '3':
             in_menu_device = True
